@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>1410065407</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,14 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>d3d_start();
-fov = 75;
+            <string>gui_scale = 0.25;
+
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -49,20 +49,21 @@ fov = 75;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var cx = obj_player.x;
-var cy = obj_player.y;
-var cz = obj_player.z + obj_player.height;
-var cdir = obj_player.direction;
-var cpitch = obj_player.pitch;
-var w = view_wport;
-var h = view_hport;
+            <string>with(obj_player) {
+    var gsc = other.gui_scale;
+    draw_sprite_ext(sprite_index, image_index,
+                    x * gsc, y * gsc, 
+                    image_xscale * gsc, image_yscale * gsc,
+                    direction, image_blend, image_alpha)
+}
 
-
-d3d_set_projection_ext(cx, cy, cz, 
-                    cx + lengthdir_x(1, cdir),
-                    cy + lengthdir_y(1, cdir),
-                    cz + lengthdir_y(1, cpitch),
-                    0, 0, 1, fov, w / h, 1, 32000)
+with(par_solid) {
+    var gsc = other.gui_scale;    
+    draw_sprite_ext(sprite_index, image_index,
+                    x * gsc, y * gsc, 
+                    image_xscale * gsc, image_yscale * gsc,
+                    direction, image_blend, image_alpha)
+}
 </string>
           </argument>
         </arguments>

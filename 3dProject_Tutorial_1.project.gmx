@@ -20,6 +20,7 @@
     <object>objects\obj_player</object>
     <object>objects\par_solid</object>
     <object>objects\obj_camera</object>
+    <object>objects\obj_GUI</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
